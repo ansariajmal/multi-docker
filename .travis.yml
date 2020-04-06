@@ -3,23 +3,23 @@ services:
   - docker
 
 before_install:
-  - docker build -t ansariajmal/react-test-docker-multi -f ./client/Dockerfile.dev ./client
+  - docker build -t ansariajmal2020/react-test-docker-multi -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true ansariajmal/react-test-docker-multi npm run test
+    - docker run -e CI=true ansariajmal2020/react-test-docker-multi npm run test
 
 after_success:
-  - docker build -t ansariajmal/multi-client ./client
-  - docker build -t ansariajmal/multi-nginx ./nginx
-  - docker build -t ansariajmal/multi-server ./server
-  - docker build -t ansariajmal/multi-worker ./worker
+  - docker build -t ansariajmal2020/multi-client ./client
+  - docker build -t ansariajmal2020/multi-nginx ./nginx
+  - docker build -t ansariajmal2020/multi-server ./server
+  - docker build -t ansariajmal2020/multi-worker ./worker
   # Log in to the docker CLI
-  - echo "DOCKERPASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   # Take those images and push them to docker hub
-  - docker push ansariajmal/multi-client
-  - docker push ansariajmal/multi-nginx
-  - docker push ansariajmal/multi-server
-  - docker push ansariajmal/multi-worker
+  - docker push ansariajmal2020/multi-client
+  - docker push ansariajmal2020/multi-nginx
+  - docker push ansariajmal2020/multi-server
+  - docker push ansariajmal2020/multi-worker
         
         
         
